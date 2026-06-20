@@ -48,6 +48,15 @@ return {
     },
   },
   on_attach = function(client, bufnr)
+    -- uv always creates a project-local `.venv`; point basedpyright at it
+    -- automatically so type-checking resolves installed packages without a
+    -- manual :LspPyrightSetPythonPath. Use the workspace root rather than cwd.
+    local root = client.root_dir or vim.fn.getcwd()
+    local venv_python = root .. "/.venv/bin/python"
+    if vim.uv.fs_stat(venv_python) then
+      set_python_path { args = venv_python }
+    end
+
     vim.api.nvim_buf_create_user_command(bufnr, "LspPyrightOrganizeImports", function()
       local params = {
         command = "basedpyright.organizeimports",
