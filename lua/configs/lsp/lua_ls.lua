@@ -88,6 +88,9 @@ return {
     Lua = {
       codeLens = { enable = true },
       hint = { enable = true, semicolon = 'Disable' },
+      workspace = {
+        checkThirdParty = false,
+      },
     },
   },
 }
