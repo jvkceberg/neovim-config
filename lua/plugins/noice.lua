@@ -34,7 +34,14 @@ return {
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
+      {
+        "rcarriga/nvim-notify",
+        -- transparency clears Normal's bg, so notify can't derive a colour to
+        -- composite against; set it explicitly to silence the startup warning
+        opts = {
+          background_colour = "#000000",
+        },
+      },
     },
     opts = opts,
   },
