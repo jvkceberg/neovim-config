@@ -18,7 +18,6 @@ return {
         "json",
         "rust",
         "c",
-        "hyprlang", -- hyprland config files
         "qmljs", -- Quickshell / Qt QML
       })
       return opts
