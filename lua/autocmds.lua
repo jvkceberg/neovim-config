@@ -1,7 +1,7 @@
 require "nvchad.autocmds"
 
--- fcitx5 auto IME toggle: force English in Normal mode, restore the previous
--- (Korean) state when re-entering Insert mode.
+-- fcitx5 auto IME toggle: force English in Normal/terminal-normal mode, restore
+-- the previous (Korean) state when entering Insert mode or terminal mode.
 local fcitx_group = vim.api.nvim_create_augroup("Fcitx5AutoToggle", { clear = true })
 
 -- Remember whether the IME was active (Korean) when leaving Insert mode.
@@ -18,7 +18,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
-vim.api.nvim_create_autocmd("InsertLeave", {
+-- Leaving Insert mode or terminal-insert mode -> force English.
+vim.api.nvim_create_autocmd({ "InsertLeave", "TermLeave" }, {
   group = fcitx_group,
   callback = function()
     -- Save current state, then switch to English.
@@ -29,7 +30,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   end,
 })
 
-vim.api.nvim_create_autocmd("InsertEnter", {
+-- Entering Insert mode or terminal-insert mode -> restore Korean.
+vim.api.nvim_create_autocmd({ "InsertEnter", "TermEnter" }, {
   group = fcitx_group,
   callback = function()
     -- Restore Korean input if it was active before leaving Insert mode.
