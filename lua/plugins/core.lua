@@ -17,6 +17,7 @@ return {
       library = {
         { path = "nvim-lspconfig", words = { "lspconfig" } },
         { path = "noice.nvim", words = { "noice", "Noice" } },
+        { path = "oil.nvim", words = { "oil" } },
         { path = "lazy.nvim" },
       },
     },
