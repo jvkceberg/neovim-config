@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local path = vim.fn.stdpath("config") .. "/lua/configs/lsp"
+local path = vim.fn.stdpath "config" .. "/lua/configs/lsp"
 local servers = {}
 
 for _, file in ipairs(vim.fn.readdir(path, [[v:val =~ '\.lua$']])) do

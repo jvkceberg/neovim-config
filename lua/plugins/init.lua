@@ -1,9 +1,9 @@
 -- lua/plugins/init.lua
 local plugins = {}
-local plugin_dir = vim.fn.stdpath("config") .. "/lua/plugins"
+local plugin_dir = vim.fn.stdpath "config" .. "/lua/plugins"
 
 for _, file in ipairs(vim.fn.readdir(plugin_dir)) do
-  if file ~= "init.lua" and file:match("%.lua$") then
+  if file ~= "init.lua" and file:match "%.lua$" then
     local mod_name = "plugins." .. file:gsub("%.lua$", "")
     local ok, mod = pcall(require, mod_name)
     if ok then

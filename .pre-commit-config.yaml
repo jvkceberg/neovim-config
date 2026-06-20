@@ -1,0 +1,11 @@
+# Auto-format Lua files with StyLua on commit.
+# Uses the locally installed stylua (mason -> ~/.local/bin/stylua), config in .stylua.toml.
+repos:
+  - repo: local
+    hooks:
+      - id: stylua
+        name: stylua
+        description: Format Lua files with StyLua
+        entry: stylua
+        language: system
+        types: [lua]
