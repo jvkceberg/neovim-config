@@ -35,6 +35,18 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TermLeave" }, {
   end,
 })
 
+-- Keep the Claude Code terminal out of the top tabufline (bufferline) by
+-- unlisting its buffer. The native terminal provider opens a buflisted
+-- terminal buffer named like "term://...//PID:claude", which NvChad's
+-- tabufline would otherwise show as a tab.
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("ClaudeCodeUnlist", { clear = true }),
+  pattern = "term://*:*claude*",
+  callback = function(args)
+    vim.bo[args.buf].buflisted = false
+  end,
+})
+
 -- Entering Insert mode or terminal-insert mode -> restore Korean.
 vim.api.nvim_create_autocmd({ "InsertEnter", "TermEnter" }, {
   group = fcitx_group,
