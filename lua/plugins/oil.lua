@@ -30,6 +30,16 @@ return {
     ---@module "oil"
     ---@type oil.SetupOpts
     opts = opts,
+    config = function(_, o)
+      require("oil").setup(o)
+      -- disable nvim-cmp completion in oil buffers (it pops up while editing names)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "oil",
+        callback = function()
+          require("cmp").setup.buffer { enabled = false }
+        end,
+      })
+    end,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     -- lazy=false: oil must load eagerly to intercept directory args (`nvim .`)
     lazy = false,
