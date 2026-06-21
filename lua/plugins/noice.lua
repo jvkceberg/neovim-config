@@ -26,6 +26,13 @@ local opts = {
     inc_rename = false,
     lsp_doc_border = false,
   },
+
+  routes = {
+    {
+      filter = { event = "notify", find = "No signature help available" },
+      opts = { skip = true },
+    },
+  },
 }
 
 return {
