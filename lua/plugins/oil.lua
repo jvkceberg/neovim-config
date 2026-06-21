@@ -10,7 +10,7 @@ local opts = {
 
   ---@type oil.SetupViewOptions
   view_options = {
-    show_hidden = false,
+    show_hidden = true,
   },
 
   ---@type table<string, any>
