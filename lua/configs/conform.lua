@@ -1,6 +1,9 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
+    c = { "clang-format" },
+    cpp = { "clang-format" },
+    cuda = { "clang-format" },
     rust = { "rustfmt", lsp_format = "fallback" },
     -- ruff replaces black + isort; ruff_organize_imports runs before ruff_format
     python = { "ruff_organize_imports", "ruff_format" },
