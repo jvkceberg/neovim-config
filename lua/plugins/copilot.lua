@@ -13,7 +13,7 @@ return {
       auto_trigger = true,
       hide_during_completion = true, -- hide ghost text while cmp menu is open
       keymap = {
-        accept = "<C-f>",
+        accept = "<M-l>",
         accept_word = "<C-Right>",
         accept_line = false,
         next = "<C-;>",
