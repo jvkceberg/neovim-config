@@ -94,7 +94,11 @@ local options = {
     },
   },
 
-  lsp = { signature = true },
+  -- noice handles signature help (lsp.signature.auto_open). Keeping NvChad's
+  -- built-in signature on too makes its TextChangedI autocmd call the
+  -- noice-overridden vim.lsp.buf.signature_help without `trigger`, which focuses
+  -- the signature window and drops you to NORMAL mode while typing args.
+  lsp = { signature = false },
 
   cheatsheet = {
     theme = "grid",
