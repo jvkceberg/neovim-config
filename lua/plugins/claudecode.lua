@@ -20,6 +20,11 @@ return {
         -- don't show the "Press Ctrl-\ Ctrl-N" tip every time the terminal opens
         show_native_term_exit_tip = false,
       },
+      diff_opts = {
+        -- keep the cursor in the Claude terminal when a diff opens, so we can
+        -- accept/deny without first moving focus back from the diff window
+        keep_terminal_focus = true,
+      },
     },
     ---@type LazyKeysSpec[]
     keys = {
