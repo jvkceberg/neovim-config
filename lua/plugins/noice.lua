@@ -32,6 +32,11 @@ local opts = {
       filter = { event = "notify", find = "No signature help available" },
       opts = { skip = true },
     },
+    -- K on a symbol with no hover docs spams "No information available"
+    {
+      filter = { event = "notify", find = "No information available" },
+      opts = { skip = true },
+    },
   },
 }
 
