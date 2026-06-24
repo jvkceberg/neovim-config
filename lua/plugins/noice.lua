@@ -37,6 +37,19 @@ local opts = {
       filter = { event = "notify", find = "No information available" },
       opts = { skip = true },
     },
+    -- basedpyright re-analyses on every keystroke (diagnosticMode = openFilesOnly)
+    -- and emits an LSP progress done message each time; drop just its progress.
+    {
+      filter = {
+        event = "lsp",
+        kind = "progress",
+        cond = function(message)
+          local client = vim.tbl_get(message.opts, "progress", "client")
+          return client == "basedpyright"
+        end,
+      },
+      opts = { skip = true },
+    },
   },
 }
 
