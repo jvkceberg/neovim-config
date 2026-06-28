@@ -35,13 +35,12 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TermLeave" }, {
   end,
 })
 
--- Keep the Claude Code terminal out of the top tabufline (bufferline) by
--- unlisting its buffer. The native terminal provider opens a buflisted
--- terminal buffer named like "term://...//PID:claude", which NvChad's
--- tabufline would otherwise show as a tab.
+-- Keep agent terminal buffers out of the top tabufline (bufferline) by
+-- unlisting them. Their native terminal buffers would otherwise show up as
+-- normal tabs in NvChad's tabufline.
 vim.api.nvim_create_autocmd("TermOpen", {
-  group = vim.api.nvim_create_augroup("ClaudeCodeUnlist", { clear = true }),
-  pattern = "term://*:*claude*",
+  group = vim.api.nvim_create_augroup("AgentTerminalUnlist", { clear = true }),
+  pattern = { "term://*:*claude*", "term://*:*codex*" },
   callback = function(args)
     vim.bo[args.buf].buflisted = false
   end,
