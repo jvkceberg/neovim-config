@@ -63,8 +63,23 @@ return {
     typescript = {},
   },
   before_init = function(_, config)
-    if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
-      config.init_options.typescript.tsdk = util.get_typescript_server_path(config.root_dir)
+    local ts = config.init_options and config.init_options.typescript
+    if ts and not ts.tsdk then
+      -- Prefer the project's own typescript; fall back to the copy bundled with
+      -- Mason's typescript-language-server so astro-ls still starts in projects
+      -- that don't ship typescript in node_modules (otherwise it errors out with
+      -- "the `typescript.tsdk` init option is required").
+      local tsdk = util.get_typescript_server_path(config.root_dir)
+      if tsdk == "" then
+        local mason_tsdk = vim.fs.joinpath(
+          vim.fn.stdpath "data",
+          "mason/packages/typescript-language-server/node_modules/typescript/lib"
+        )
+        if vim.uv.fs_stat(mason_tsdk) then
+          tsdk = mason_tsdk
+        end
+      end
+      ts.tsdk = tsdk
     end
   end,
 }
