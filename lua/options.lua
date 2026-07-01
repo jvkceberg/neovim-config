@@ -7,6 +7,10 @@ o.shiftwidth = 4 -- >> / << and auto-indent use 4
 o.softtabstop = 4 -- <Tab>/<BS> in insert mode feel like 4
 o.expandtab = true -- insert spaces instead of a literal tab
 
+-- Line numbers: show relative numbers with the absolute number on the current line.
+o.number = true
+o.relativenumber = true
+
 -- Built-in ftplugins (go, make, python, ...) run after this file and can reset
 -- tabstop/expandtab (e.g. Go switches to noexpandtab with an 8-wide tab), which
 -- is what makes <CR> indent jump to 8 columns. Re-apply our width afterwards.
