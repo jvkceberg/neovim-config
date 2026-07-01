@@ -37,8 +37,10 @@ return {
   root_markers = { "package.json", ".git" },
   ---@type lspconfig.settings.cssls
   settings = {
-    css = { validate = true },
-    scss = { validate = true },
-    less = { validate = true },
+    -- Ignore unknown at-rules so Tailwind directives (@tailwind, @apply, @screen, ...)
+    -- are not flagged as errors. Tailwind features are handled by tailwindcss server.
+    css = { validate = true, lint = { unknownAtRules = "ignore" } },
+    scss = { validate = true, lint = { unknownAtRules = "ignore" } },
+    less = { validate = true, lint = { unknownAtRules = "ignore" } },
   },
 }
